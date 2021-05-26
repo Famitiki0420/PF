@@ -3,8 +3,8 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
   }
-  namespace :admin do
-    get 'top' => 'homes#top', as: 'top'
+  namespace :admins do
+    # get 'top' => 'homes#top', as: 'top'
     # get 'search' => 'homes#search', as: 'search'
     # get 'customers/:customer_id/orders' => 'orders#index', as: 'customer_orders'
     # resources :customers, only: [:index, :show, :edit, :update]
@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   }
   
     scope module: :users do
-    root 'homes#top'
-    # get 'customers/mypage' => 'customers#show', as: 'mypage'
+    root 'games#top'
+    get 'users/mypage' => 'users#show', as: 'mypage'
     # get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
     # patch 'customers/information' => 'customers#update', as: 'update_information'
     # put 'customers/information' => 'customers#update'
@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     # get 'orders/confirm' => 'orders#error'
     # get 'orders/thanks' => 'orders#thanks', as: 'thanks'
 
+    resource :favorites, only: [:create, :destroy]
     # resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     # resources :items, only: [:index, :show] do
     #   resources :cart_items, only: [:create, :update, :destroy]
@@ -41,5 +42,4 @@ Rails.application.routes.draw do
     # resources :cart_items, only: [:index]
     # resources :orders, only: [:new, :index, :create, :show]
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

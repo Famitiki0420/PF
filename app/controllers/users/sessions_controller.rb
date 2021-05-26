@@ -24,4 +24,25 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  
+  #ログイン後ログアウト後の遷移ページ
+  def after_sign_in_path_for(resource)
+    mypage_path
+  end
+
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+
+  #ユーザの退会機能実装予定
+  # def reject_inactive_user
+  #   @user = User.find_by(email: params[:user][:email])
+  #   if @user
+  #     if @user.valid_password?(params[:user][:password]) && !@user.is_active
+  #       flash[:danger] = 'お客様は退会済みです。申し訳ございませんが、別のメールアドレスをお使いください。'
+  #       redirect_to new_user_session_path
+  #     end
+  #   end
+  # end
+
 end

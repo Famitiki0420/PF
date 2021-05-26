@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rank_name: MyString
+  rank_order: 1
+  rank_default: false
+  game_id: 1
+
+two:
+  rank_name: MyString
+  rank_order: 1
+  rank_default: false
+  game_id: 1
