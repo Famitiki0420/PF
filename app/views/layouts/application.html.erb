@@ -11,53 +11,61 @@
 
   <body>
     <%# binding.pry %>
-    <% if admin_signed_in? %>
-      <header class="admin_header">
-        <div class="header-content">
-          <%= link_to 'E-com', root_path, class: "logo" %>
-          <ul class="flex">
-            <li><%= link_to 'ゲーム一覧', admin_games_path %></li>
-            <li><%= link_to '会員一覧', admin_users_path %></li>
-            <li><%= link_to 'ランク管理', admin_ranks_path %></li>
-            <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-          </ul>
-          <%= form_tag(admin_search_path, method: :get) do %>
-            <%= text_field_tag "search[content]", "", :placeholder =>"会員: 姓,名,セイ,メイ / 商品: 商品名" %>
-            <%= select_tag "search[model]", options_for_select({ "会員" => "user", "ゲーム" => "game" }) %>
-            <%= select_tag "search[method]", options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect" }) %>
-            <%= submit_tag '検索', class: "btn btn-primary" %>
-          <% end %>
-        </div>
-      </header>
-    <% elsif user_signed_in? %>
-      <header>
-        <div class="header-content">
-          <%= link_to 'E-com', root_path, class: "logo" %>
-          <ul class="flex">
-            <p>ようこそ、<%= current_user.name %>さん!</p>
-            <li><%= link_to 'マイページ', mypage_path %></li>
-            <li><%= link_to 'ゲーム一覧', games_path %></li>
-            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/"><h3 class="btn btn-light btn-lg text-primary border border-dark">E-コミュ！</h3></a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+              <li><%= link_to 'ゲーム一覧', admin_games_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+              <li><%= link_to '会員一覧', admin_users_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+              <li><%= link_to 'ランク管理', admin_ranks_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+            <% elsif user_signed_in? %>
+                <p>ようこそ、<%= current_user.name %>さん!</p>
+                <li><%= link_to 'マイページ', mypage_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+                <li><%#= link_to 'ゲーム一覧', games_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+            <% else %>
+              <li><%= link_to 'About', about_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+              <li><%#= link_to 'ゲーム一覧', games_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+              <li><%= link_to '新規登録', new_user_registration_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+              <li><%= link_to 'ログイン', new_user_session_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+            <% end %>
           </ul>
         </div>
-      </header>
-    <% else %>
-      <header>
-        <div class="header-content">
-          <%= link_to 'E-com', root_path, class: "logo" %>
-          <ul class="flex">
-            <li><%#= link_to 'ゲーム一覧', games_path %></li>
-            <li><%= link_to '新規登録', new_user_registration_path %></li>
-            <li><%= link_to 'ログイン', new_user_session_path %></li>
-          </ul>
-        </div>
-      </header>
-    <% end %>
+      </div>
+    </nav>
 
     <main>
       <%= yield %>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     </main>
 
-    <footer>Copyright © Famitikiclub Inc. All Rights Reserved.</footer>
+ 
+    <footer>
+      <div class='container mt-4'>
+        <div class='row d-flex justify-content-center'>
+          <div class='d-flex align-items-center'>
+            <p class="pr-2 text-primary bg-white border border-dark">Copyright © Famitikiclub Inc. All Rights Reserved</p>
+          </div>
+        </div>
+      </div>
+      <div class='container mt-0'>
+        <div class='row d-flex justify-content-end'>
+          <div class='d-flex align-items-center fa-lg'>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.css" type="text/css" media="all" />
+            <a class="fab fa-facebook-square faa-wrench animated-hover" href="https://www.facebook.com/"></a>
+            <a class="fab fa-twitter-square faa-wrench animated-hover" href="https://twitter.com/"></a>
+            <a class="fab fa-instagram faa-wrench animated-hover" href="https://www.instagram.com/"></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    
+    
   </body>
 </html>
