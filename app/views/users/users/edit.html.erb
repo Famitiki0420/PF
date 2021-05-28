@@ -1,2 +1,63 @@
-<h1>Users::Users#edit</h1>
-<p>Find me in app/views/users/users/edit.html.erb</p>
+
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>件のエラーが発生しました
+  <% @user.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<body>
+  <div class = "container my-5">
+    <div class="row">
+      <div class="col offset-2">
+        <h3 class="">会員情報編集</h3>
+      </div>
+    </div>
+    <div class='row offset-1'>
+      <div class="col-xs-offset-1 col-xs-8">
+        <%#= form_with model: @user, url: update_information_path, local:true do |f| %>
+        <%= form_for(@user, url: update_information_path) do |f| %>
+          <table class = 'table inin'>
+          <!--user情報を入れる　テキストフィールド展開-->
+          <tr>
+            <td>
+            <%= attachment_image_tag @user, :image, :fill, 100, 100, fallback: "no_image.jpg"%>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="inputImage">ProfileImage</label>
+              <%= f.attachment_field :image, placeholder: "プロフィール画像" %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.label :名前 %></td>
+            <td><%= f.text_field :name, :size => "20*30", class: "border border-dark rounded" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :メールアドレス %></td>
+            <td><%= f.text_field :email, :size => "20*30", class: "border border-dark rounded" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :紹介文 %></td>
+            <td><%= f.text_field :introduction, :size => "40*90", class: "border border-dark rounded" %></td>
+          </tr>
+        </table>
+        <!--各リンク先のパスを入れる-->
+      </div>
+    </div>
+          <div class="row">
+            <div class="col-sm-2 offset-3">
+              <%= f.submit '編集内容を保存', class: 'btn btn-success' %>
+            </div>
+            <div class="col-sm-2 offset-1">
+              <%#= link_to '退会する', customer_confirm_path(current_customer),class: 'btn btn-danger' %>
+        <% end %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
