@@ -17,9 +17,9 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
-              <li><%= link_to 'ゲーム一覧', admin_games_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
-              <li><%= link_to '会員一覧', admin_users_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
-              <li><%= link_to 'ランク管理', admin_ranks_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+              <li><%#= link_to 'ゲーム一覧', admin_games_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+              <li><%#= link_to '会員一覧', admin_users_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
+              <li><%#= link_to 'ランク管理', admin_ranks_path, class: "btn btn-light border border-dark text-warning mr-1" %></li>
               <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-light border border-dark text-warning mr-1" %></li>
             <% elsif user_signed_in? %>
                 <p>ようこそ、<%= current_user.name %>さん!</p>
