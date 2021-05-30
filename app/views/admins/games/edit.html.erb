@@ -1,0 +1,33 @@
+<div class="container my-5">
+  <p id="notice text-success"><%= notice %></p>
+  <div class="row">
+    <h1>ゲーム編集</h1>
+  </div>
+  <div class="row">
+    <%= form_with model: @game, url: admins_game_path, method: :patch, local:true do |f| %>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>ゲーム画像</td>
+          <td><%= f.attachment_field :game_image %></td>
+        </tr>
+        <tr>
+          <td>ゲームタイトル</td>
+          <td><%= f.text_field :game_title %></td>
+        </tr>
+        <tr>
+          <td>ゲーム説明</td>
+          <td><%= f.text_area :game_introduction %></td>
+        </tr>
+        <tr>
+          <td>ランク</td>
+          <td>
+          <%#= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "ジャンルを選択してください" %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <%= f.submit '変更を保存',  class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

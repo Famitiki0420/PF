@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     # get 'search' => 'homes#search', as: 'search'
     # get 'customers/:customer_id/orders' => 'orders#index', as: 'customer_orders'
     # resources :customers, only: [:index, :show, :edit, :update]
-    # resources :items, except: [:destroy]
+    resources :games
     # resources :genres, only: [:index, :create, :edit, :update]
     # resources :orders, only: [:index, :show, :update] do
     #   resources :order_details, only: [:update]
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   }
   
     scope module: :users do
-      get 'users/mypage' => 'users#show', as: 'mypage'
+      get 'users/mypage/:id' => 'users#show', as: 'mypage'
       get 'users/information/edit' => 'users#edit', as: 'edit_information'
       patch 'users/information' => 'users#update', as: 'update_information'
       put 'users/information' => 'users#update'

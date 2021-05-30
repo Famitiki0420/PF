@@ -1,0 +1,27 @@
+<div class="container my-5">
+  <p id="notice text-success"><%= notice %></p>
+  <h2>ゲーム詳細</h2>
+  <div class="row">
+    <div class="col"><%= attachment_image_tag(@game, :game_image, :fill, 500, 300,  fallback: "no_image.jpeg", size:'500x300') %></div>
+    <div class="col">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>ゲーム名</td>
+            <td><%= @game.game_title %></td>
+          </tr>
+          <tr>
+            <td>ゲーム説明</td>
+            <td><%= @game.game_introduction %> </td>
+          </tr>
+          <tr>
+            <td>ランク</td>
+            <td><%#= @game.rank.rank_name %></td>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to "編集する", edit_admins_game_path(@game), class: "btn btn-success"%>
+      <%= link_to "削除する", admins_game_path(@game), class: "btn btn-danger", method: :delete %>
+    </div>
+  </div>
+</div>

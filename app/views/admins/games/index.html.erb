@@ -1,0 +1,42 @@
+
+<div class="container mb-2">
+  <p id="notice text-success"><%= notice %></p>
+  <div class="row my-5">
+    <div class="col-sm-2 offset-1 d-flex justify-content-center text-dark">
+      <h2>ゲーム一覧</h2>
+    </div>
+    <div class="col offset-6">
+      <%= link_to new_admins_game_path do %>
+        <h1 class="maru border rounded-circle text-body">＋</h1>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead class="bg-light text-dark">
+        <tr>
+          <th>ゲームID</th>
+          <th>ゲームタイトル</th>
+          <th>ランク</th>
+          <!--<th>ステータス</th>-->
+        </tr>
+      </thead>
+      <tbody>
+        <% @games.each do |game| %>
+        <tr>
+          <td><%= game.id %></td>
+          <td>
+            <%= link_to admins_game_path(game) do %>
+            <%= game.game_title %>
+            <% end %>
+          </td>
+          <td><%#= item.genre.name %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+  <div class="mb-4 d-flex justify-content-center">
+    <%#= paginate(@items) %>
+  </div>
