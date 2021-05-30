@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       # put 'customers/withdraw' => 'customers#withdraw'
 
       resource :favorites, only: [:create, :destroy]
-      # resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+      resources :games, only: [:index, :show]
       # resources :items, only: [:index, :show] do
       #   resources :cart_items, only: [:create, :update, :destroy]
       # end
