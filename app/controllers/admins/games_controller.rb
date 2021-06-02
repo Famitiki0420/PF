@@ -31,10 +31,10 @@ class Admins::GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     if @game.update(game_params)
-       flash[:notice] = "ゲームを更新しました"
+       flash[:notice] = "ゲーム情報を更新しました"
        redirect_to admins_game_path(@game)
     else
-       flash[:notice] = "ゲームの更新に失敗しました"
+       flash[:notice] = "ゲーム情報の更新に失敗しました"
        redirect_back(fallback_location: root_path)
     end
   end
