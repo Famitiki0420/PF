@@ -25,16 +25,16 @@ Rails.application.routes.draw do
       get 'users/information/edit' => 'users#edit', as: 'edit_information'
       patch 'users/information' => 'users#update', as: 'update_information'
       put 'users/information' => 'users#update'
-      # get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
-      # patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
+      post 'users/comment' => 'comments#create', as: 'user_comments'
+      delete 'users/comment/:id' => 'comments#destroy', as: 'user_comment'
       # put 'customers/withdraw' => 'customers#withdraw'
 
       resource :favorites, only: [:create, :destroy]
       resources :games, only: [:index, :show]
+      # resources :comments, only: [:create, :destroy]
       # resources :items, only: [:index, :show] do
       #   resources :cart_items, only: [:create, :update, :destroy]
       # end
-      # resources :cart_items, only: [:index]
       # resources :orders, only: [:new, :index, :create, :show]
       
       resource :relationships, only: [:create, :destroy]
