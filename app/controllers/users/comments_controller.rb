@@ -3,7 +3,7 @@ class Users::CommentsController < ApplicationController
     # user = User.find(params[:user_id])
     # comment = Comment.new(comment_params)
     # comment.commenter_id = current_user.id
-    # comment.commentef_id = user.id
+    # comment.commented_id = user.id
     # comment.save
     # redirect_to mypage_path(user)
   end
