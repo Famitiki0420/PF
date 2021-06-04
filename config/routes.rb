@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     passwords: 'users/passwords',
   }
-  
+
     scope module: :users do
       get 'users/mypage/:id' => 'users#show', as: 'mypage'
       get 'users/information/edit' => 'users#edit', as: 'edit_information'
@@ -36,12 +36,12 @@ Rails.application.routes.draw do
       # end
       # resources :cart_items, only: [:index]
       # resources :orders, only: [:new, :index, :create, :show]
-      
+
       resource :relationships, only: [:create, :destroy]
         get 'followings' => 'relationships#followings', as: 'followings'
         get 'followers' => 'relationships#followers', as: 'followers'
     end
-    
+
       root 'homes#top'
       get 'about' => 'homes#about'
 end
