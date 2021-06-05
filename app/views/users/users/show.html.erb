@@ -13,44 +13,52 @@
         <%= link_to '編集する', edit_information_path, class: "btn btn-success  px-3"%>
       </div>
     </div>
-
     <div class='row '>
       <div class="col-sm-7 ">
-          <!--Current userの編集画面へ遷移させる-->
-              <table class = 'table border'>
-                <!--user情報をそれぞれ入れる-->
-                <tr>
-                  <td class = 'information border bg-light'>ユーザー画像</td>
-                  <td><%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
-                </tr>
-                <tr>
-                  <td class = 'information border bg-light'>名前</td>
-                  <td><%= @user.name %></td>
-                </tr>
-                <tr>
-                  <td class = 'information border bg-light'>メールアドレス</td>
-                  <td><%= @user.email %></td>
-                </tr>
-                <tr>
-                  <td class = 'information border bg-light'>紹介文</td>
-                  <td><%= @user.introduction %></td>
-                </tr>
-              </table>
-              <div class="comments">
-                <p>コメント件数：<%= @user.comments.count %></p>
-                <% @user.comments.each do |comment| %>
-                  <p><%= image_tag('no_image.jpg') %></p>
-                  <%= comment.commenter.name %>
-                  <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-                <% end %>
-              </div>
-              <div class="new-comment">
-              <%= form_with(model:[@user, @comment], local: true) do |f| %>
-                <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-                <%= f.hidden_field :user_id, :value => user.id %>
-                <%= f.submit "送信する" %>
-              <% end %>
-              </div>
+        <table class = 'table border'>
+          <tr>
+            <td class = 'information border bg-light'>ユーザー画像</td>
+            <td><%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+          </tr>
+          <tr>
+            <td class = 'information border bg-light'>名前</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td class = 'information border bg-light'>メールアドレス</td>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <td class = 'information border bg-light'>紹介文</td>
+            <td><%= @user.introduction %></td>
+          </tr>
+        </table>
+        <div class="col-sm-10">
+          <h3 class="fas fa-users text-left">コミュニケーション情報</h3>
+        </div>
+        <div>
+          <%= link_to "フォローユーザ一覧", user_followers_path(current_user.id) %>
+          <%= link_to "フォロワーユーザ一覧", user_followings_path(current_user.id) %>
+          <% if current_user.following?(@user) %>
+            <%= link_to "フォロー解除する", user_relationships_path(@user.id), method: :delete %>
+          <% else %>
+            <%= link_to "このユーザをフォローする", user_relationships_path(@user.id), method: :post %>
+        </div>
+          <% end %>
+        <div class="comments">
+          <p>コメント件数：<%= @user.comments.count %></p>
+          <% @user.comments.each do |comment| %>
+            <p><%= image_tag('no_image.jpg') %></p>
+            <%= comment.commenter.name %>
+            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+          <% end %>
+        </div>
+        <div class="new-comment">
+        <%= form_with(model:[@user, @comment], local: true) do |f| %>
+          <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+        </div>
       </div>
     </div>
   </div>

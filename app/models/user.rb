@@ -13,18 +13,20 @@ class User < ApplicationRecord
   #   favorites.where(user_id: user.id).exists?
   # end
 
+  #ユーザへのコメント機能についてのリレーション
+  has_many :reverse_of_comments, class_name: "Comment", foreign_key: "commented_id", dependent: :destroy
+  has_many :comments, class_name: "Comment", foreign_key: "commenter_id", dependent: :destroy
+  # 【class_name:"Comment"】は省略可能
+
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
   # 被フォロー関係を通じて参照→followed_idをフォローしている人
+  
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   # 【class_name: "Relationship"】は省略可能
   has_many :followings, through: :relationships, source: :followed
   # 与フォロー関係を通じて参照→follower_idをフォローしている人
 
-  #ユーザへのコメント機能についてのリレーション
-  has_many :reverse_of_comments, class_name: "Comment", foreign_key: "commented_id", dependent: :destroy
-  has_many :comments, class_name: "Comment", foreign_key: "commenter_id", dependent: :destroy
-  # 【class_name:"Comment"】は省略可能
 
 
   def follow(user_id)

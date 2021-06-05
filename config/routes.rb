@@ -27,9 +27,15 @@ Rails.application.routes.draw do
       put 'users/information' => 'users#update'
       post 'users/comment' => 'comments#create', as: 'user_comments'
       delete 'users/comment/:id' => 'comments#destroy', as: 'user_comment'
-      # put 'customers/withdraw' => 'customers#withdraw'
+      resources :users, only: [:index] do
+        #フォロー関係
+        resource :relationships, only: [:create, :destroy]
+          get 'followings' => 'relationships#followings', as: 'followings'
+          get 'followers' => 'relationships#followers', as: 'followers'
+        #いいね関係
+        resource :favorites, only: [:create, :destroy]
+      end
 
-      resource :favorites, only: [:create, :destroy]
       resources :games, only: [:index, :show]
       # resources :comments, only: [:create, :destroy]
       # resources :items, only: [:index, :show] do
@@ -37,9 +43,9 @@ Rails.application.routes.draw do
       # end
       # resources :orders, only: [:new, :index, :create, :show]
 
-      resource :relationships, only: [:create, :destroy]
-        get 'followings' => 'relationships#followings', as: 'followings'
-        get 'followers' => 'relationships#followers', as: 'followers'
+      # resource :relationships, only: [:create, :destroy]
+      #   get 'followings' => 'relationships#followings', as: 'followings'
+      #   get 'followers' => 'relationships#followers', as: 'followers'
     end
 
       root 'homes#top'
