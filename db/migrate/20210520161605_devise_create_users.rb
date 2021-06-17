@@ -33,8 +33,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
       t.string :name, null: false, default: "ニックネーム"
-      t.string :image_id, null: false
-      t.text :introduction, null: false
+      t.string :image_id, null: true
+      t.text :introduction, null: false, default: ""
       t.timestamps null: false
     end
 

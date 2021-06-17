@@ -1,8 +1,13 @@
 class Users::UsersController < ApplicationController
-  def show
+  def mypage
     @user = User.find(params[:id])
     @comment = Comment.new
   end
+
+  # def mypage
+  #   @user = current_user
+  #   @comment = Comment.new
+  # end
 
   def edit
     @user = current_user
@@ -12,12 +17,12 @@ class Users::UsersController < ApplicationController
     @user = current_user
 	  if @user.update(user_params)
 	    flash[:success] = "登録情報を変更しました"
-	    redirect_to mypage_path
+	    redirect_to mypage_path(@user)
 	  else
 	    render :edit
 	  end
 	end
-	
+
 	private
 
   def user_params

@@ -21,13 +21,16 @@ Rails.application.routes.draw do
   }
 
     scope module: :users do
-      get 'users/mypage/:id' => 'users#show', as: 'mypage'
-      get 'users/information/edit' => 'users#edit', as: 'edit_information'
-      patch 'users/information' => 'users#update', as: 'update_information'
-      put 'users/information' => 'users#update'
-      post 'users/comment' => 'comments#create', as: 'user_comments'
-      delete 'users/comment/:id' => 'comments#destroy', as: 'user_comment'
+      get 'users/mypage/:id' => 'users#mypage', as: 'mypage'
+      # get 'users/information/:id' => 'users#show', as: 'show_user'
+      get 'users/mypage/edit' => 'users#edit', as: 'edit_mypage'
+      patch 'users/mypage' => 'users#update', as: 'update_mypage'
+      put 'users/mypage' => 'users#update'
+      # post 'users/comment' => 'comments#create', as: 'user_comments'
+      # delete 'users/comment/:id' => 'comments#destroy', as: 'user_comment'
       resources :users, only: [:index] do
+        #ユーザへのコメント
+        resources :comments, only: [:create, :destroy]
         #フォロー関係
         resource :relationships, only: [:create, :destroy]
           get 'followings' => 'relationships#followings', as: 'followings'
@@ -37,7 +40,6 @@ Rails.application.routes.draw do
       end
 
       resources :games, only: [:index, :show]
-      # resources :comments, only: [:create, :destroy]
       # resources :items, only: [:index, :show] do
       #   resources :cart_items, only: [:create, :update, :destroy]
       # end

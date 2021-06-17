@@ -13,10 +13,10 @@
         <h3 class="">会員情報編集</h3>
       </div>
     </div>
+    <%= form_for(@user, url: update_information_path) do |f| %>
     <div class='row offset-1'>
       <div class="col-xs-offset-1 col-xs-8">
         <%#= form_with model: @user, url: update_information_path, local:true do |f| %>
-        <%= form_for(@user, url: update_information_path) do |f| %>
           <table class = 'table inin'>
           <!--user情報を入れる　テキストフィールド展開-->
           <tr>
@@ -26,7 +26,7 @@
           </tr>
           <tr>
             <td>
-              <label for="inputImage">ProfileImage</label>
+              <label for="inputImage">イメージ画像</label>
               <%= f.attachment_field :image, placeholder: "プロフィール画像" %>
             </td>
           </tr>
