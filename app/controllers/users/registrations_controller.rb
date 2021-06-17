@@ -67,7 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
  #ログイン後ログアウト後の遷移用必要？
   def after_sign_up_path_for(resource)
-    mypage_path
+    root_path
   end
 
   def after_update_path_for(resource)
