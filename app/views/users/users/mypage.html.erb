@@ -1,5 +1,5 @@
 <main>
-  <div class = "container my-5 ">
+  <div class="container my-5">
     <div class="row">
       <div class="col-sm-2">
         <h2>MY PAGE</h2>
@@ -10,26 +10,26 @@
         <h3>登録情報</h3>
       </div>
       <div class="col-sm-2">
-        <%= link_to '編集する', edit_mypage_path, class: "btn btn-success  px-3"%>
+        <%= link_to '編集する', edit_mypage_path, class: "btn btn-success px-3"%>
       </div>
     </div>
-    <div class='row '>
-      <div class="col-sm-7 ">
-        <table class = 'table border'>
+    <div class='row'>
+      <div class="col-sm-7">
+        <table class='table border'>
           <tr>
-            <td class = 'information border bg-light'>ユーザー画像</td>
-            <td><%= attachment_image_tag @user, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %></td>
+            <td class='information border bg-light'>ユーザー画像</td>
+            <td><%= attachment_image_tag @user, :image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg" %></td>
           </tr>
           <tr>
-            <td class = 'information border bg-light'>名前</td>
+            <td class='information border bg-light'>名前</td>
             <td><%= @user.name %></td>
           </tr>
           <tr>
-            <td class = 'information border bg-light'>メールアドレス</td>
+            <td class='information border bg-light'>メールアドレス</td>
             <td><%= @user.email %></td>
           </tr>
           <tr>
-            <td class = 'information border bg-light'>紹介文</td>
+            <td class='information border bg-light'>紹介文</td>
             <td><%= @user.introduction %></td>
           </tr>
         </table>
@@ -48,7 +48,7 @@
         <div class="comments">
           <p>コメント件数：<%= @user.comments.count %></p>
           <% @user.comments.each do |comment| %>
-            <%= attachment_image_tag comment.commenter, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %>
+            <%= attachment_image_tag comment.commenter, :image, size: '60x60', format: 'jpeg', fallback: "no_image.jpg" %>
             <%= comment.commenter.name %>
             <p class="sentiment-score">本文の感情分析スコア[<%= comment.score %>]</p>
             <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
